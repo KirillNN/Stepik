@@ -1,26 +1,50 @@
 class Server:
-    pass
+    IP = 0
+
+    def __init__(self):
+        self.buffer = []
+        Server.IP += 1
+        self.ip = Server.IP
+        self.router = None
+
+    def send_data(self, data):
+        if self.router:
+            self.router.buffer.append(data)
+
+    def get_data(self):
+        b = self.buffer[:]
+        self.buffer.clear()
+        return b
+
+    def get_ip(self):
+        return self.ip
 
 
 class Router:
     def __init__(self):
         self.buffer = []
+        self.servers = {}
 
-    @staticmethod
-    def link(server):
-        pass
+    def link(self, server):
+        self.servers[server.ip] = server
+        server.router = self
 
-    @staticmethod
-    def unlink(server):
-        pass
+    def unlink(self, server):
+        s = self.servers.pop(server.ip, False)
+        if s:
+            s.router = None
 
-    @staticmethod
-    def send_data():
-        pass
+    def send_data(self):
+        for d in self.buffer:
+            if d.ip in self.servers:
+                self.servers[d.ip].buffer.append(d)
+        self.buffer.clear()
 
 
 class Data:
-    pass
+    def __init__(self, data, ip):
+        self.data = data
+        self.ip = ip
 
 
 router = Router()
