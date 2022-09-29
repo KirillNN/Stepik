@@ -66,7 +66,7 @@ class Clock:
 
 clock = Clock(4530)
 print()
-"""
+
 # step 5
 class Money:
     def __init__(self, money):
@@ -95,3 +95,47 @@ mn_2.add_money(mn_1)
 m1 = mn_1.get_money()    # 100
 m2 = mn_2.get_money()    # 120
 pass
+
+
+
+# step 7
+class Book:
+    def __init__(self, author, title, price):
+        self.__author = author
+        self.__title = title
+        self.__price = price
+        pass
+
+    def set_title(self, title):
+        self.__title = title
+
+    def set_author(self, author):
+        self.__author = author
+
+    def set_price(self, price):
+        self.__price = price
+
+    def get_title(self):
+        return self.__title
+
+    def get_author(self):
+        return self.__author
+
+    def get_price(self):
+        return self.__price
+
+
+book = Book('Lutzh', 'Python', 2000)
+"""
+# step 8
+class Line:
+    def __init__(self, x1, y1, x2, y2):
+        pass
+
+    def set_coords(self, x1, y1, x2, y2):
+        pass
+
+    def get_coords(self):
+        pass
+
+    def draw(self):
