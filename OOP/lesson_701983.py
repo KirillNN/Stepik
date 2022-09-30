@@ -126,8 +126,6 @@ class Book:
 
 
 book = Book('Lutzh', 'Python', 2000)
-"""
-
 
 # step 8
 class Line:
@@ -141,7 +139,7 @@ class Line:
         self.__y2 = y2
 
     def get_coords(self):
-        return (self.__x1, self.__y1, self.__x2, self.__y2)
+        return self.__x1, self.__y1, self.__x2, self.__y2
 
     def draw(self):
         print(*self.get_coords())
@@ -149,3 +147,39 @@ class Line:
 
 line = Line(1, 2, 3, 4)
 line.draw()
+"""
+
+
+# step 9
+class Point:
+    def __init__(self, x, y):
+        self.__x = x
+        self.__y = y
+
+    def get_coords(self):
+        return self.__x, self.__y
+
+
+class Rectangle:
+    def __init__(self, x1, y1, x2=0, y2=0):
+        if x2 != 0:
+            self.__sp = Point(x1, y1)
+            self.__ep = Point(x2, y2)
+        else:
+            self.__sp = x1
+            self.__ep = y1
+
+    def set_coords(self, sp, ep):
+        self.__sp = sp
+        self.__ep = ep
+
+    def get_coords(self):
+        return self.__sp, self.__ep
+
+    def draw(self):
+        print(f'Прямоугольник с координатами: {self.__sp.get_coords()} '
+              f'{self.__ep.get_coords()}')
+
+
+rect = Rectangle(0, 0, 20, 34)
+rect.draw()
