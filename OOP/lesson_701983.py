@@ -147,7 +147,7 @@ class Line:
 
 line = Line(1, 2, 3, 4)
 line.draw()
-"""
+
 
 
 # step 9
@@ -183,3 +183,120 @@ class Rectangle:
 
 rect = Rectangle(0, 0, 20, 34)
 rect.draw()
+
+
+
+# step 10
+class ObjList:
+    def __init__(self, data):
+        self.__data = data
+        self.__next = None
+        self.__prev = None
+
+    def set_next(self, obj):
+        self.__next = obj
+
+    def set_prev(self, obj):
+        self.__prev = obj
+
+    def get_next(self):
+        return self.__next
+
+    def get_prev(self):
+        return self.__prev
+
+    def set_data(self, data):
+        self.__data = data
+
+    def get_data(self):
+        return self.__data
+
+
+class LinkedList:
+    def __init__(self):
+        self.head = None
+        self.tail = None
+
+    def add_obj(self, obj):
+        if self.tail:
+            self.tail.set_next(obj)
+        obj.set_prev(self.tail)
+        self.tail = obj
+        if not self.head:
+            self.head = obj
+
+    def remove_obj(self):
+        if self.tail is None:
+            return
+        prev = self.tail.get_prev()
+        if prev:
+            prev.set_next(None)
+        self.tail = prev
+        if self.tail is None:
+            self.head = None
+
+    def get_data(self):
+        s = []
+        h = self.head
+        while h:
+            s.append(h.get_data())
+            h = h.get_next()
+        return s
+
+
+lst = LinkedList()
+lst.add_obj(ObjList("данные 1"))
+lst.add_obj(ObjList("данные 2"))
+lst.add_obj(ObjList("данные 3"))
+res = lst.get_data()    # ['данные 1', 'данные 2', 'данные 3']
+"""
+# step 11
+from random import randint
+from string import ascii_lowercase, digits, ascii_uppercase
+
+
+class EmailValidator:
+    EMAIL_CHARS = ascii_uppercase + ascii_lowercase + digits + '_.@'
+    EMAIL_RANDOM_CHARS = ascii_uppercase + ascii_lowercase + digits + '_'
+
+    def __new__(cls, *args, **kwargs):
+        return None
+
+    @classmethod
+    def check_email(cls, email):
+        if not cls.__is_email_str(email):
+            return False
+        if not set(email) < set(cls.EMAIL_CHARS):
+            return False
+        s = email.split('@')
+        if len(s) != 2:
+            return False
+        if len(s[0]) > 100 or len(s[1]) > 50:
+            return False
+        if '.' not in s[1]:
+            return False
+        if email.count('..') > 0:
+            return False
+
+    @staticmethod
+    def __is_email_str(email):
+        return type(email) == str
+
+    @classmethod
+    def get_random_email(cls):
+        n = randint(4, 20)
+        length = len(cls.EMAIL_RANDOM_CHARS) - 1
+        return ''.join(cls.EMAIL_RANDOM_CHARS[randint(0, length)] for i in range(n)) + '@gmail.com'
+
+
+print(EmailValidator.check_email('sc_lib@list.ru'))
+
+
+
+
+
+
+
+
+
+
