@@ -175,8 +175,6 @@ print(r.__dict__)
 
 x = RadiusVector2D.norm2(r)
 print(x)
-"""
-
 
 # step 9
 class TreeObj:
@@ -240,3 +238,64 @@ DecisionTree.add_obj(TreeObj(-1, "безнадежен"), v_12, False)
 
 x = [1, 1, 0]
 res = DecisionTree.predict(root, x)  # будет программистом
+
+# step 10
+class LineTo:
+    def __init__(self, x, y):
+        self.x = x
+        self.y = y
+
+
+class PathLines:
+    def __init__(self, *args):
+        self.paths: list[LineTo] = []
+        self.add_line(LineTo(0, 0))
+        self.paths += list(args)
+
+    def get_path(self):
+        return self.paths
+
+    def get_length(self):
+        length = 0
+        for i in range(0, len(self.paths) - 1):
+            x0, x1 = self.paths[i].x, self.paths[i + 1].x
+            y0, y1 = self.paths[i].y, self.paths[i + 1].y
+            length += ((x1 - x0) ** 2 + (y1 - y0) ** 2) ** 0.5
+        return length
+
+    def add_line(self, line):
+        self.paths.append(line)
+
+
+p = PathLines(LineTo(10, 20), LineTo(10, 30))
+p.add_line(LineTo(20, -10))
+dist = p.get_length()
+print(dist)
+"""
+
+
+# step 11
+class PhoneNumber:
+    def __init__(self, number, fio):
+        self.number = number
+        self.fio = fio
+
+
+class PhoneBook:
+    def __init__(self):
+        self.notes = []
+
+    def add_phone(self, phone):
+        self.notes.append(phone)
+
+    def remove_phone(self, indx):
+        self.notes.pop(indx)
+
+    def get_phone_list(self):
+        return self.notes
+
+
+p = PhoneBook()
+p.add_phone(PhoneNumber(12345678901, "Сергей Балакирев"))
+p.add_phone(PhoneNumber(21345678901, "Панда"))
+phones = p.get_phone_list()
