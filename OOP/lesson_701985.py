@@ -113,9 +113,8 @@ print(db.x)
 # и он имеет наибольший приоритет при обращении к атрибутам,
 # поэтому в строчке db.x будет обращение к дескриптору,
 # а не к локальному свойству.
-"""
 
-
+# step 7
 class FloatValue:
     @classmethod
     def verify_value(cls, value):
@@ -152,3 +151,85 @@ for i in range(N):
     for j in range(M):
         table.cells[i][j].value = count
         count += 1
+
+# step 8
+class ValidateString:
+    def __init__(self, min_length=3, max_length=100):
+        self.min_length = min_length
+        self.max_length = max_length
+
+    def validate(self, string):
+        return type(string) == str and self.min_length <= len(string) <= self.max_length
+
+
+class StringValue:
+    def __init__(self, validator):
+        self.validator = validator
+
+    def __set_name__(self, ow, n):
+        self.name = "_" + n
+
+    def __get__(self, ins, ow):
+        return getattr(ins, self.name)
+
+    def __set__(self, ins, v):
+        if self.validator.validate(v):
+            setattr(ins, self.name, v)
+
+
+class RegisterForm:
+    login = StringValue(validator=ValidateString())
+    password = StringValue(validator=ValidateString())
+    email = StringValue(validator=ValidateString())
+
+    def __init__(self, login, password, email):
+        self.login = login
+        self.password = password
+        self.email = email
+
+    def get_fields(self):
+        return [self.login, self.password, self.email]
+
+    def show(self):
+        print(f'<form>\n'
+              f'Логин: {self.login}\n'
+              f'Пароль: {self.password}\n'
+              f'Email: {self.email}\n'
+              f'</form>')
+
+
+validate = ValidateString(min_length=3, max_length=100)
+print(validate.validate('sdss'))
+st = StringValue(validator=ValidateString(3, 100))
+"""
+# step 9
+class StringValue:
+    def __set_name__(self, ow, n):
+        self.name = "_" + n
+
+    def __get__(self, ins, ow):
+        return getattr(ins, self.name)
+
+    def __set__(self, ins, v):
+        if self.validator.validate(v):
+            setattr(ins, self.name, v)
+
+class SuperShop:
+    def __init__(self, name):
+        self.name = name
+        self.goods = []
+
+    def add_product(self, product):
+        self.goods.append(product)
+
+    def remove_product(self, product):
+        self.goods.remove(product)
+
+class Product:
+    name = StringValue(2, 50)
+    price = PriceValue(max_value)
+
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
