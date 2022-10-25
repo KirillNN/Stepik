@@ -201,9 +201,29 @@ class RegisterForm:
 validate = ValidateString(min_length=3, max_length=100)
 print(validate.validate('sdss'))
 st = StringValue(validator=ValidateString(3, 100))
-"""
+
 # step 9
 class StringValue:
+    def __init__(self, min_length, max_length):
+        self.min_length = min_length
+        self.max_length = max_length
+
+    def __set_name__(self, ow, n):
+        self.name = "_" + n
+        pass
+
+    def __get__(self, ins, ow):
+        return getattr(ins, self.name)
+
+    def __set__(self, ins, v):
+        if type(v) == str and self.min_length <= len(v) <= self.max_length:
+            setattr(ins, self.name, v)
+
+
+class PriceValue:
+    def __init__(self, max_value):
+        self.max_value = max_value
+
     def __set_name__(self, ow, n):
         self.name = "_" + n
 
@@ -211,8 +231,18 @@ class StringValue:
         return getattr(ins, self.name)
 
     def __set__(self, ins, v):
-        if self.validator.validate(v):
+        if (type(v) == int or type(v) == float) and 0 <= v <= self.max_value:
             setattr(ins, self.name, v)
+
+
+class Product:
+    name = StringValue(2, 50)
+    price = PriceValue(10000)
+
+    def __init__(self, name, price):
+        self.name = name
+        self.price = price
+
 
 class SuperShop:
     def __init__(self, name):
@@ -225,11 +255,41 @@ class SuperShop:
     def remove_product(self, product):
         self.goods.remove(product)
 
-class Product:
-    name = StringValue(2, 50)
-    price = PriceValue(max_value)
 
-    def __init__(self, name, price):
+shop = SuperShop("У Балакирева")
+shop.add_product(Product("Курс по Python", 0))
+shop.add_product(Product("Курс по Python ООП", 2000))
+for p in shop.goods:
+    print(f"{p.name}: {p.price}")
+"""
+
+
+# step 10
+class Thing:
+    def __init__(self, name, weight):
         self.name = name
-        self.price = price
+        self.weight = weight
 
+
+class Bag:
+    def __init__(self, max_weight):
+        self.max_weight = max_weight
+        self.__things = []
+
+    @property
+    def things(self):
+        return self.__things
+
+    def add_thing(self, thing: Thing):
+        if self.get_total_weight() + thing.weight <= self.max_weight:
+            self.__things.append(thing)
+
+    def remove_thing(self, indx):
+        self.__things.pop(indx)
+
+    def get_total_weight(self):
+        return sum(x.weight for x in self.__things)
+
+
+bug = Bag(100)
+print(bug.things)
