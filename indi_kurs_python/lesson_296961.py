@@ -6,9 +6,9 @@
 
 
 # letter = input()
-# words = input().split()
+# numbers = input().split()
 #
-# for word in words:
+# for word in numbers:
 #     if word.lower().find(letter) != -1:
 #         print(word)
 
