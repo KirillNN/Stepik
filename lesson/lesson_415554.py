@@ -63,3 +63,17 @@ for i, x in enumerate(numbers):
             result = "ДА"
             break
 print(result)
+
+# step 7
+tim = input()
+rus = input()
+if tim == rus:
+    print('ничья')
+elif tim == 'камень' and rus == 'ножницы':
+    print('Тимур')
+elif tim == 'ножницы' and rus == 'бумага':
+    print('Тимур')
+elif tim == 'бумага' and rus == 'камень':
+    print('Тимур')
+else:
+    print('Руслан')
