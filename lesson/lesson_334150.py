@@ -29,3 +29,21 @@ n = int(input())
 
 # вызываем функцию
 print(is_prime(n))
+
+# step 4
+# Напишите функцию get_next_prime(num), которая принимает в качестве аргумента натуральное число num
+# и возвращает первое простое число большее числа num.
+# объявление функции
+
+def get_next_prime(num):
+    while True: # TODO: доделать
+        for i in range(num, int(num ** 0.5) + 1):
+            if not num % i:
+                return False
+        return True
+
+# считываем данные
+n = int(input())
+
+# вызываем функцию
+print(get_next_prime(n))
