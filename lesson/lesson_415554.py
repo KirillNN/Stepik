@@ -125,18 +125,13 @@ for i in range(1, int(input()) + 1):
 # step 11
 alphabet = ["а", "б", "в", "г", "д", "е", "ж", "з", "и", "й", "к", "л", "м", "н", "о",
             "п", "р", "с", "т", "у", "ф", "х", "ц", "ч", "ш", "щ", "ъ", "ы", "ь", "э", "ю", "я"]
-
+alpha = [chr(i) for i in range(1072, 1104)]
 word = input()
-word += ' запретил букву '
-# print(word)
-count=0
-for i in alphabet:
-    word += i
-    print(len(word))
-    word = ''.join([x for x in word if x != i]).strip() + ' '
-    print(len(word))
-    print(word)
-    # if count != len(word):
+word += ' запретил букву'
 
-    if word == ' ':
-        break
+for i in alphabet:
+    if i in word:
+        print(word, i)
+        word = ''.join([x if x != i else '' for x in word]).strip()
+        while '  ' in word:
+            word = word.replace('  ', ' ')
