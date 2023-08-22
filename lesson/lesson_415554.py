@@ -134,5 +134,6 @@ word += ' запретил букву '
 for i in alphabet:
     word += i
     print(word)
+
     # word = ''.join([x for x in word if x != i])
     # print(word)
