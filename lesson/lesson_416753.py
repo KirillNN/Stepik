@@ -61,5 +61,19 @@ for i in text:
 print(result)
 """
 # step 13
+text = input().split()
+n = int(input())
+result = text[:n]
+
+
+
+
+
+
+
+
+
+
+
 
 
