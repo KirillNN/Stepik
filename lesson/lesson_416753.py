@@ -44,9 +44,22 @@ def pascal(n):
 n = int(input())
 for row in pascal(n):
     print(*row)
-"""
+
 # step 12
 text = input().split()
+result = []
+letter = ''
+count = -1
+for i in text:
+    if i != letter:
+        result.append([i])
+        letter = i
+        count += 1
+    else:
+        result[count].append(i)
 
+print(result)
+"""
+# step 13
 
 
