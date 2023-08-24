@@ -32,8 +32,6 @@ def pascal(n):
 
 n = int(input())
 print(pascal(n))
-"""
-
 
 # step 11
 def pascal(n):
@@ -46,3 +44,9 @@ def pascal(n):
 n = int(input())
 for row in pascal(n):
     print(*row)
+"""
+# step 12
+text = input().split()
+
+
+
