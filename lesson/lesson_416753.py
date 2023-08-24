@@ -59,21 +59,11 @@ for i in text:
         result[count].append(i)
 
 print(result)
-"""
+
 # step 13
 text = input().split()
 n = int(input())
-result = text[:n]
-
-
-
-
-
-
-
-
-
-
-
-
-
+result = [text[x:x + n] for x in range(0, len(text), n)]
+print(result)
+"""
+# step 14
