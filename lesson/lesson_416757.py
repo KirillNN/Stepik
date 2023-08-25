@@ -84,7 +84,7 @@ for r in range(n):
 n, m = [int(num) for num in input().split()]
 
 matrix = []
-for shift in range(n):
+for shift in range(n): # сдвиг влево на shift позиций
     original_list = list(range(1, m + 1))
     for _ in range(shift):
         temp_lst = original_list[0]
