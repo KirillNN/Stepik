@@ -67,3 +67,10 @@ result = [text[x:x + n] for x in range(0, len(text), n)]
 print(result)
 """
 # step 14
+text = input().split()
+result = [[]]
+for i in range(len(text)):
+    for j in range(len(text) - i):
+        result.append(text[j:j + i + 1])
+
+print(result)
