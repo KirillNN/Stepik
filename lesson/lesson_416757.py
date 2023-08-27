@@ -79,7 +79,7 @@ for r in range(n):
     for c in range(n):
         print(str(matrix[r][c]).ljust(3), end='')
     print()
-"""
+
 # step 7
 n, m = [int(num) for num in input().split()]
 
@@ -92,6 +92,23 @@ for shift in range(n): # сдвиг влево на shift позиций
             original_list[i - 1] = original_list[i]
         original_list[-1] = temp_lst
     matrix.append(original_list)
+
+for r in range(n):
+    for c in range(m):
+        print(str(matrix[r][c]).ljust(3), end='')
+    print()
+"""
+# step 8
+n, m = [int(num) for num in input().split()]
+
+matrix = []
+for i in range(n):
+    temp = list(range(m * i + 1, m * (i + 1) + 1))
+    if not i % 2:
+        matrix.append(temp)
+    else:
+        temp.reverse()
+        matrix.append(temp)
 
 for r in range(n):
     for c in range(m):
