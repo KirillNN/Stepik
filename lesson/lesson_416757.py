@@ -97,7 +97,7 @@ for r in range(n):
     for c in range(m):
         print(str(matrix[r][c]).ljust(3), end='')
     print()
-"""
+
 # step 8
 n, m = [int(num) for num in input().split()]
 
@@ -113,4 +113,73 @@ for i in range(n):
 for r in range(n):
     for c in range(m):
         print(str(matrix[r][c]).ljust(3), end='')
+    print()
+
+
+# step 9
+def create_diagonal_matrix(n, m):
+    matrix = [[0] * m for _ in range(n)]
+    num = 1
+
+    for d in range(n + m - 1):
+        if d < m:
+            row = 0
+            col = d
+        else:
+            row = d - m + 1
+            col = m - 1
+
+        while row < n and col >= 0:
+            matrix[row][col] = num
+            num += 1
+            row += 1
+            col -= 1
+
+    return matrix
+
+
+n, m = map(int, input().split())
+matrix = create_diagonal_matrix(n, m)
+for row in matrix:
+    print(" ".join(map(str, row)))
+"""
+
+
+# step 10
+def generate_spiral_matrix(n, m):
+    matrix = [[0] * m for _ in range(n)]
+    num = 1
+    left, right, top, bottom = 0, m - 1, 0, n - 1
+
+    while num <= n * m:
+        for i in range(left, right + 1):
+            matrix[top][i] = num
+            num += 1
+        top += 1
+
+        for i in range(top, bottom + 1):
+            matrix[i][right] = num
+            num += 1
+        right -= 1
+
+        if top <= bottom:  # Добавлено условие для избежания повторного заполнения
+            for i in range(right, left - 1, -1):
+                matrix[bottom][i] = num
+                num += 1
+            bottom -= 1
+
+        if left <= right:  # Добавлено условие для избежания повторного заполнения
+            for i in range(bottom, top - 1, -1):
+                matrix[i][left] = num
+                num += 1
+            left += 1
+
+    return matrix
+
+
+n, m = [int(num) for num in input().split()]
+spiral_matrix = generate_spiral_matrix(n, m)
+for r in range(n):
+    for c in range(m):
+        print(str(spiral_matrix[r][c]).ljust(3), end='')
     print()
