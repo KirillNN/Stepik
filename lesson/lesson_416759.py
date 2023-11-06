@@ -35,7 +35,7 @@ for i in range(n):
     for j in range(n):
         print(matrix[j][i], end=' ')
     print()
-"""
+
 # step 4
 n = int(input())
 matrix = [['.'] * n for _ in range(n)]  # матрица квадратная
@@ -50,3 +50,32 @@ for i in range(n):
 
 for i in range(len(matrix)):
     print(*matrix[i])
+
+# step 5
+n = int(input())
+matrix = []  # матрица квадратная
+for i in range(n):
+    temp = [int(num) for num in input().split()]
+    matrix.append(temp)
+result = 'YES'
+for i in range(n):
+    for j in range(n):
+        if j != n - i - 1 and matrix[i][j] != matrix[n - j - 1][n - i - 1]:
+            result = 'NO'
+            break
+print(result)
+"""
+# step 6
+n = int(input())
+matrix = []  # матрица квадратная
+for i in range(n):
+    temp = [int(num) for num in input().split()]
+    matrix.append(temp)
+x = [row for row in matrix]
+print(x)
+rows = all(x)
+cols = all([matrix[i][j] for i in range(n)].sort() == range(1,n-1) for j in range(n))
+
+print(rows, cols)
+
+
