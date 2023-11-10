@@ -1,7 +1,3 @@
-myset = set()
-for i in range(10):
-    if i % 2 == 0:
-        myset.add('even')
-    else:
-        myset.add('odd')
-print(len(myset))
+myset = set([10, 9, 8])
+myset.update('абв')
+print(myset)
