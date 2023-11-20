@@ -23,4 +23,9 @@ print(*sorted(myset))
 https://stepik.org/lesson/445793/step/7?unit=436054
 
 """
+# step 7
+files = ['python.png', 'qwerty.py', 'Python.PNg', 'apple.pnG', 'zebra.PNG', 'solution.Py', 'stepik.org', 'kotlin.ko',
+         'github.git', 'ZeBrA.PnG']
 
+x = {x.lower() for x in files if x.lower().endswith('.png')}
+print(*sorted(x))
