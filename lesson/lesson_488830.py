@@ -50,7 +50,7 @@ while number:
     number //= 10
 
 print(result)
-'''
+
 # step 14
 my_dict = {'CS101': (3004, 'Хайнс', '8:00'), 'CS102': (4501, 'Альварадо', '9:00'),
            'CS103': (6755, 'Рич', '10:00'), 'NT110': (1244, 'Берк', '11:00'),
@@ -59,3 +59,37 @@ my_dict = {'CS101': (3004, 'Хайнс', '8:00'), 'CS102': (4501, 'Альвар�
 data = input()
 item = my_dict.get(data)
 print(f'{data}: {item[0]}, {item[1]}, {item[2]}')
+
+# step 15
+d = {
+    "1": ".,?!:",
+    "2": "ABC",
+    "3": "DEF",
+    "4": "GHI",
+    "5": "JKL",
+    "6": "MNO",
+    "7": "PQRS",
+    "8": "TUV",
+    "9": "WXYZ",
+    "0": " "
+}
+data = input()
+result = ''
+for letter in data:
+    for key, item in d.items():
+        if letter.upper() in item:
+            result += key * (item.index(letter.upper()) + 1)
+print(result)
+'''
+# step 16
+letters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
+morse = ['.-', '-...', '-.-.', '-..', '.', '..-.', '--.', '....', '..', '.---', '-.-', '.-..', '--', '-.', '---', '.--.', '--.-', '.-.', '...', '-', '..-', '...-', '.--', '-..-', '-.--', '--..', '-----', '.----', '..---', '...--', '....-', '.....', '-....', '--...', '---..', '----.']
+morse = dict(zip(letters, morse))
+data = input().upper()
+result = []
+for letter in data:
+    x = morse.get(letter)
+    if x:
+        print(x, end=' ')
+
+
