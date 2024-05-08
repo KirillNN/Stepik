@@ -36,7 +36,7 @@ for k, v in data.items():
     elif word == v:
         print(k)
         break
-'''
+
 # step 5
 data = {}
 for _ in range(int(input())):
@@ -49,3 +49,31 @@ for _ in range(int(input())):
         if city in v:
             print(k)
             break
+
+# step 6
+data = {}
+for _ in range(int(input())):
+    number, name = input().lower().split()
+    if name in data:
+        data[name] += [number]
+    else:
+        data[name] = [number]
+
+for _ in range(int(input())):
+    name = input().lower()
+    if name in data:
+        print(*data[name])
+    else:
+        print('абонент не найден')
+'''
+# step 7
+string = input()
+data = {}
+for i in string:
+    data[str(string.count(i))] = i
+
+for _ in range(int(input())):
+    letter, count = input().split(': ')
+    string = string.replace(data[count], letter)
+
+print(string)
