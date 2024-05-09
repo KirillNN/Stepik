@@ -55,7 +55,7 @@ remove_keys = [1, 5, 7, 12, 17, 19, 21, 24]
 
 result = {i: v for i, v in letters.items() if i not in remove_keys}
 print(result)
-'''
+
 # step 14
 students = {'Timur': (170, 75), 'Ruslan': (180, 105), 'Soltan': (192, 68), 'Roman': (175, 70), 'Madlen': (160, 50),
             'Stefani': (165, 70), 'Tom': (190, 90), 'Jerry': (180, 87), 'Anna': (172, 67), 'Scott': (168, 78),
@@ -63,4 +63,21 @@ students = {'Timur': (170, 75), 'Ruslan': (180, 105), 'Soltan': (192, 68), 'Roma
             'Rustam': (186, 100), 'Alice': (159, 59), 'Rita': (170, 80), 'Mary': (175, 69), 'Jane': (190, 80)}
 
 result = {i: (v, z) for i, (v, z) in students.items() if v > 167 and z < 75}
+print(result)
+
+# step 15
+tuples = [(1, 2, 3), (4, 5, 6), (7, 8, 9), (10, 11, 12), (13, 14, 15), (16, 17, 18), (19, 20, 21), (22, 23, 24),
+          (25, 26, 27), (28, 29, 30), (31, 32, 33), (34, 35, 36)]
+
+result = {i: (v, z) for i, v, z in tuples}
+print(result)
+'''
+# step 16
+student_ids = ['S001', 'S002', 'S003', 'S004', 'S005', 'S006', 'S007', 'S008', 'S009', 'S010', 'S011', 'S012', 'S013']
+student_names = ['Camila Rodriguez', 'Juan Cruz', 'Dan Richards', 'Sam Boyle', 'Batista Cesare', 'Francesco Totti',
+                 'Khalid Hussain', 'Ethan Hawke', 'David Bowman', 'James Milner', 'Michael Owen', 'Gary Oldman',
+                 'Tom Hardy']
+student_grades = [86, 98, 89, 92, 45, 67, 89, 90, 100, 98, 10, 96, 93]
+
+result = [{x: {y: z}} for x, y, z in zip(student_ids, student_names, student_grades)]
 print(result)
