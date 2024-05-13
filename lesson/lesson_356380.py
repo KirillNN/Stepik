@@ -137,8 +137,5 @@ while n > 0:
 
 # print(check_complication('sdf'))
 '''
-# step 15
 
-for i in range(48):
-    # print(round(i*1.27,2))
-    print(i+1)
+
