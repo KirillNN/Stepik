@@ -34,17 +34,21 @@ def sort_func(data):
 
 numbers.sort(key=sort_func)
 print(numbers)
-'''
+
 # step 13
 athletes = [('Дима', 10, 130, 35), ('Тимур', 11, 135, 39), ('Руслан', 9, 140, 33), ('Рустам', 10, 128, 30),
             ('Амир', 16, 170, 70), ('Рома', 16, 188, 100), ('Матвей', 17, 168, 68), ('Петя', 15, 190, 90)]
 
 
-def sort_func(x,n):
-   return x[n]
+def sort_func(param):
+    def key(data):
+        return data[param - 1]
 
+    return key
 
 
 n = int(input())
 athletes.sort(key=sort_func(n))
-print(athletes)
+[print(*i) for i in athletes]
+'''
+# step 14
