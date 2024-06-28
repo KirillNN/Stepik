@@ -50,5 +50,61 @@ def sort_func(param):
 n = int(input())
 athletes.sort(key=sort_func(n))
 [print(*i) for i in athletes]
-'''
+
 # step 14
+from math import sin
+
+
+def square(n):
+    return n ** 2
+
+
+def cube(n):
+    return n ** 3
+
+
+def sqrt(n):
+    return n ** 0.5
+
+
+def fabs(n):
+    return abs(n)
+
+
+def fsin(n):
+    return sin(n)
+
+
+commands = {'квадрат': square, 'куб': cube, 'корень': sqrt, 'модуль': fabs, 'синус': fsin}
+n = int(input())
+command = input()
+print(commands[command](n))
+
+# step 15
+def sort_func(number):
+    result = 0
+    while number:
+        result += number % 10
+        number //= 10
+    return result
+
+
+numbers = list(map(int, input().split()))
+numbers.sort(key=sort_func)
+print(*numbers)
+'''
+
+
+# step 16
+def sort_func(number):
+    n = number
+    result = 0
+    while number:
+        result += number % 10
+        number //= 10
+    return result, n
+
+
+numbers = list(map(int, input().split()))
+numbers.sort(key=sort_func)
+print(*numbers)
