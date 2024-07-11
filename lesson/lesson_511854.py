@@ -30,5 +30,14 @@ if all(x.isdigit() for x in ip) and all(int(x) < 256 for x in ip):
     print(True)
 else:
     print(False)
-'''
+
 # step 12
+print(*filter(lambda x: '0' not in str(x) and all(not x % int(i) for i in str(x)), range(int(input()), int(input()) + 1)))
+
+# step 13
+password = input()
+result = any(map(lambda x: x.isdigit(), password)) and any(map(lambda x: x.isupper(), password)) and any(
+    map(lambda x: x.islower(), password)) and len(password) > 6
+print(['NO', 'YES'][result])
+'''
+# step 14
