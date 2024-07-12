@@ -41,3 +41,12 @@ result = any(map(lambda x: x.isdigit(), password)) and any(map(lambda x: x.isupp
 print(['NO', 'YES'][result])
 '''
 # step 14
+data = dict()
+n = int(input())
+for i in range(n):
+    people = int(input())
+    data[i] = []
+    for _ in range(people):
+        surname, grade = input().split()
+        data[i].append(grade)
+print(['NO', 'YES'][all('5' in x for x in data.values())])
